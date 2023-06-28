@@ -1,0 +1,12 @@
+services:
+
+    _defaults:
+        autowire:      true
+        autoconfigure: true
+        public:        false
+
+    Eureka\Component\Web\:
+        resource: '../../vendor/eureka/component-web/src'
+
+    session:
+        alias: 'Eureka\Component\Web\Session\Session'

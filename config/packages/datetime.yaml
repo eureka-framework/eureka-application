@@ -1,0 +1,24 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire:      true
+    autoconfigure: true
+    public:        false
+
+  #~ PSR Clock
+  Application\Service\Clock\SystemClock: ~
+
+  #~ Date provider (time zone UTC & date time now UTC)
+  application.date.time.zone.utc:
+    class: DateTimeZone
+    arguments:
+      $timezone: 'UTC'
+
+  application.date.time.now.utc:
+    class: DateTimeImmutable
+    arguments:
+      $datetime: 'now'
+      $timezone: '@application.date.time.zone.utc'
+
+  DateTimeImmutable:
+    alias: 'application.date.time.now.utc'
