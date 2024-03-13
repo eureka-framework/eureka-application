@@ -1,5 +1,6 @@
 #!/usr/bin/env php
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 /*
  * Copyright (c) Romain Cottard
@@ -10,6 +11,7 @@
 
 use Eureka\Kernel\Console\Application\Application;
 use Eureka\Kernel\Console\Kernel;
+use Lcobucci\Clock\SystemClock;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\NullLogger;
 
@@ -17,19 +19,20 @@ use Psr\Log\NullLogger;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
-
-    $root   = realpath(__DIR__ . '/..');
-    $env    = getenv('EKA_ENV') ?: 'dev';
+    $root   = (string) realpath(__DIR__ . '/..');
+    $env    = (string) getenv('EKA_ENV') ?: 'dev';
     $debug  = (bool) (getenv('EKA_DEBUG') ?: ($env === 'dev'));
     $kernel = new Kernel($root, $env, $debug);
 
-    $console = new Application($argv, $kernel->getContainer());
+    $console = new Application(SystemClock::fromSystemTimezone(), $argv, container: $kernel->getContainer());
     $console
-        ->setBaseNamespaces([
-            '\Eureka\Component',
-            '\Eureka\Component\Deployer\Script',
-            '\Application\Script',
-        ])
+        ->setBaseNamespaces(
+            [
+                'Application\Script',
+                'Eureka\Component\Deployer\Script',
+                'Eureka\Component',
+            ]
+        )
         ->setLogger(new NullLogger())
     ;
 
@@ -37,7 +40,6 @@ try {
     $console->run();
     $console->after();
     $console->terminate();
-
 } catch (NotFoundExceptionInterface $exception) {
     echo 'Exception: ' . $exception->getMessage() . PHP_EOL;
     exit(1);

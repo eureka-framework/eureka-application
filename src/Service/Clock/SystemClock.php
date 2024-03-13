@@ -15,9 +15,7 @@ use Psr\Clock\ClockInterface;
 
 final class SystemClock implements ClockInterface
 {
-    public function __construct(private readonly \DateTimeZone $timezone)
-    {
-    }
+    public function __construct(private readonly \DateTimeZone $timezone) {}
 
     public static function fromUTC(): self
     {

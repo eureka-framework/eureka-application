@@ -2,3 +2,6 @@
 parameters:
     app.name:    'eureka'
     app.version: '1.0.0'
+
+services:
+    Psr\Container\ContainerInterface: ~
