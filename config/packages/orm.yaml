@@ -30,8 +30,6 @@ parameters:
 
 services:
     _defaults:
-        public:        false
-        autowire:      true
         autoconfigure: true
 
     Eureka\Component\Orm\:

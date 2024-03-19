@@ -1,5 +1,9 @@
+includes:
+  - vendor/phpstan/phpstan-phpunit/extension.neon
+  - vendor/phpstan/phpstan-phpunit/rules.neon
+
 parameters:
-  phpVersion: 80100 # PHP 8.1 - Current minimal version supported
+  phpVersion: 80100
   level: max
   paths:
     - ./src
@@ -7,5 +11,3 @@ parameters:
 
   bootstrapFiles:
     - ./vendor/autoload.php
-
-  ignoreErrors: []

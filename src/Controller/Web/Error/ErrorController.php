@@ -35,7 +35,7 @@ class ErrorController extends AbstractWebController implements ErrorControllerIn
     {
         //~ Handle authentication errors & redirect to user login page
         if ($exception->getCode() >= 1050 && $exception->getCode() <= 1054 || $exception->getCode() >= 1060) {
-            $this->addFlashNotification($exception->getMessage(), NotificationType::ERROR);
+            $this->addFlashNotification($exception->getMessage(), NotificationType::Error);
             $this->redirect($this->getRouteUri('user_login'));
         }
 

@@ -11,6 +11,7 @@ config/secrets/*
 node_modules/
 web/assets
 yarn.lock
+yarn-error.log
 
 #~ Application
 var/*

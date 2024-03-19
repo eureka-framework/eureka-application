@@ -27,6 +27,9 @@ abstract class AbstractWebController extends Controller
     use SessionAwareTrait;
     use TwigAwareTrait;
 
+    /**
+     * @throws \JsonException
+     */
     public function preAction(?ServerRequestInterface $serverRequest = null): void
     {
         if ($serverRequest === null) {
@@ -47,6 +50,7 @@ abstract class AbstractWebController extends Controller
         $this->getContext()
             ->add('menu', $this->getMenu())
             ->add('meta', $this->getMeta())
+            ->add('theme', $this->getTheme($serverRequest))
             ->add('cssFiles', $this->getCssFiles())
             ->add('jsFiles', $this->getJsFiles())
             ->add('flashNotifications', $this->getAllFlashNotification())
@@ -56,5 +60,10 @@ abstract class AbstractWebController extends Controller
         ;
 
         $this->getSession()?->clearFlash();
+    }
+
+    private function getTheme(?ServerRequestInterface $serverRequest = null): string
+    {
+        return $serverRequest?->getCookieParams()['theme'] ?? 'auto';
     }
 }

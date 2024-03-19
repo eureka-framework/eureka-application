@@ -40,8 +40,7 @@ class TwigMiddleware implements MiddlewareInterface
         private readonly Twig\Environment $twig,
         private readonly array $twigPaths = [],
         private readonly string $webAssetsPath = ''
-    ) {
-    }
+    ) {}
 
     /**
      * Process an incoming server request and return a response, optionally delegating
@@ -88,7 +87,7 @@ class TwigMiddleware implements MiddlewareInterface
 
     private function configureExtensions(): void
     {
-        $this->twig->addRuntimeLoader(new class implements Twig\RuntimeLoader\RuntimeLoaderInterface {
+        $this->twig->addRuntimeLoader(new class () implements Twig\RuntimeLoader\RuntimeLoaderInterface {
             public function load(string $class): ?Twig\Extra\Markdown\MarkdownRuntime
             {
                 if (Twig\Extra\Markdown\MarkdownRuntime::class === $class) {

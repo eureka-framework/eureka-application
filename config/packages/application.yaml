@@ -9,12 +9,9 @@ parameters:
 
 services:
   _defaults:
-    autowire:      true
-    autoconfigure: true
-    public:        false
+    autowire: true
     bind:
       $connectionName:          'common'
-      $tokenSignatureSecretKey: '%app.secret.token.key%'
 
   #~ Application source code except controllers & middleware (see packages/middleware.yaml)
   Application\:

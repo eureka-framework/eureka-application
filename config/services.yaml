@@ -2,3 +2,14 @@
 parameters:
     app.name:    'eureka'
     app.version: '1.0.0'
+
+services:
+
+    ####################################################################################################################
+    # Symfony Container
+    ####################################################################################################################
+    Symfony\Component\DependencyInjection\ContainerInterface:
+        alias: 'service_container'
+
+    Psr\Container\ContainerInterface:
+        alias: 'service_container'

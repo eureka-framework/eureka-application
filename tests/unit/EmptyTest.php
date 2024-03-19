@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Tests;
+namespace Application\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

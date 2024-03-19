@@ -1,5 +1,7 @@
 parameters:
-  twig.template.name: 'bootstrap'
+  twig.template.name: 'bootswatch'
+
+  twig.cache.dir: '%kernel.directory.cache%/%kernel.environment%/twig'
 
   twig.paths:
     app:    '%kernel.directory.root%/templates/%twig.template.name%/app'
@@ -11,9 +13,7 @@ parameters:
 services:
 
   _defaults:
-    autowire:      true
-    autoconfigure: true
-    public:        false
+    autowire: true
 
   Twig\Loader\FilesystemLoader: ~
 
@@ -21,8 +21,17 @@ services:
     arguments:
       $loader: '@Twig\Loader\FilesystemLoader'
       $options:
-        cache: '%kernel.directory.cache%/%kernel.environment%/twig'
+        cache: '%twig.cache.dir%'
         debug: '%kernel.debug%'
 
   twig:
-    alias: Twig\Environment
+    alias: 'Twig\Environment'
+
+  Application\Service\Twig\TwigConfigurator:
+    arguments:
+      $twigPaths:       '%twig.paths%'
+      $webAssetsPath:   '%app.web.assets.path%'
+
+  Application\Service\Twig\TwigCacheWarmer:
+    tags:
+      - { name: 'kernel.cache_warmer', priority: 0 }

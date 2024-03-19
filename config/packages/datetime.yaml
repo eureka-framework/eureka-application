@@ -1,9 +1,6 @@
 services:
-  # default configuration for services in *this* file
   _defaults:
-    autowire:      true
-    autoconfigure: true
-    public:        false
+    autowire: true
 
   #~ PSR Clock
   Application\Service\Clock\SystemClock: ~
