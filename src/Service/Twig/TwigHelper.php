@@ -11,41 +11,40 @@ declare(strict_types=1);
 
 namespace Application\Service\Twig;
 
+use Application\Exception\TwigHelperException;
 use Symfony\Component\Routing\Router;
 
 class TwigHelper
 {
-    /** @var string[] $assetsManifest */
+    /** @var array<string> $assetsManifest */
     private array $assetsManifest;
 
-    /**
-     * @throws \JsonException
-     */
     public function __construct(private readonly Router $router, string $webAssetsPath)
     {
         $this->initializeAssetsManifest($webAssetsPath);
     }
 
-    /**
-     * @throws \JsonException
-     */
     private function initializeAssetsManifest(string $webAssetsPath): void
     {
         $manifestFile = $webAssetsPath . '/manifest.json';
 
         if (!is_readable($manifestFile)) {
-            throw new \RuntimeException('manifest.json file is not readable.');
+            throw new TwigHelperException('manifest.json file is not readable.', 1100);
         }
 
-        /** @var string[] $json */
-        $json = json_decode(
-            (string) file_get_contents($manifestFile),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        );
 
-        $this->assetsManifest = $json;
+        try {
+            /** @var array<string> $json */
+            $json = \json_decode(
+                (string) \file_get_contents($manifestFile),
+                true,
+                flags: \JSON_THROW_ON_ERROR
+            );
+
+            $this->assetsManifest = $json;
+        } catch (\JsonException $exception) {
+            throw new TwigHelperException('Unable to decode manifest.json file!', 1101, $exception);
+        }
     }
 
     /**
@@ -82,7 +81,7 @@ class TwigHelper
 
     private function getRealAssetPath(string $filename, string $baseUrl): string
     {
-        $filePath = trim($baseUrl, ' /') . '/' . ltrim($filename, '/');
+        $filePath = \trim($baseUrl, ' /') . '/' . \ltrim($filename, '/');
         if (!isset($this->assetsManifest[$filePath])) {
             return '';
         }

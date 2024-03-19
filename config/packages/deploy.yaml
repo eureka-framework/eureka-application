@@ -1,5 +1,4 @@
 #file: noinspection YAMLSchemaValidation
-# Services Yaml file
 parameters:
 
   eureka.deployer.dir.src:  '/server/src'
@@ -18,7 +17,7 @@ parameters:
       step.end:   100
 
       step.list:
-        #~ 0: Start Install (defined in main install script)
+        #~ 0: Start Install (defined in main installation script)
         #~ 1 to 9: reserved for deployed itself
         #~ 001: Install composer
         #~ 002: Copy secrets files
@@ -41,11 +40,11 @@ parameters:
 
         #~  98: Clean cache
         #~  99: Init directory again for production
-        #~ 100: Ending installation (defined in main install script)
+        #~ 100: Ending installation (defined in main installation script)
 
       init:
         directories:
-          'var/log': 777
+          'var/log':   777
           'var/cache': 777
 
         symlinks:

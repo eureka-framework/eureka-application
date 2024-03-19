@@ -15,7 +15,7 @@ parameters:
 
     copyright:
       year: 'now'
-      name: 'Romain Cottard'
+      name: 'velkuns'
 
     footer:
       links: [ ]

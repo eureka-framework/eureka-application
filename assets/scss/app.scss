@@ -1,6 +1,10 @@
-@import "~bootstrap";
+$web-font-path: "./fonts-sketchy.scss";
+
+@import "~bootswatch/dist/sketchy/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/sketchy/bootswatch";
+@import "~bootstrap-icons/font/bootstrap-icons";
 
 body {
-  padding-top: 3.5rem;
-  padding-bottom: 3rem;
+  padding-top: 120px;
 }
