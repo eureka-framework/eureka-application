@@ -48,7 +48,7 @@ parameters:
           'var/cache': 777
 
         symlinks:
-          '/server/upload/eureka/': 'web/upload'
+          '/server/upload/eureka/': 'public/upload'
 
       copy:
         files:

@@ -6,7 +6,9 @@ parameters:
   phpVersion: 80100
   level: max
   paths:
+    - ./bin
     - ./src
+    - ./scripts
     - ./tests
 
   bootstrapFiles:

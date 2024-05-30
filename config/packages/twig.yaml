@@ -30,7 +30,10 @@ services:
   Application\Service\Twig\TwigConfigurator:
     arguments:
       $twigPaths:       '%twig.paths%'
-      $webAssetsPath:   '%app.web.assets.path%'
+
+  Application\Service\Twig\TwigHelper:
+    arguments:
+      $webAssetsPath:   '%app.public.assets.path%'
 
   Application\Service\Twig\TwigCacheWarmer:
     tags:

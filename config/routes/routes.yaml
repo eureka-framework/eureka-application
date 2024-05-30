@@ -8,3 +8,14 @@ home:
     methods:    [GET]
     defaults:
         authenticationRequired: false
+
+
+# ======================================================================================================================
+# =                                                 WEB                                                                =
+# ======================================================================================================================
+api_ping:
+    path:       /api/ping
+    controller: Application\Controller\Api\Home\HomeApiController::ping
+    methods:    [GET]
+    defaults:
+        authenticationRequired: false

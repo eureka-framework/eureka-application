@@ -1,4 +1,10 @@
 parameters:
+  # Default db info
+  app.secret.database.schema:   'application'
+  app.secret.database.host:     'localhost'
+  app.secret.database.username: 'user'
+  app.secret.database.password: 'pass'
+
   # Common config database
   app.database.common:
     dsn: 'mysql:dbname=%app.secret.database.schema%;host=%app.secret.database.host%;charset=UTF8'
