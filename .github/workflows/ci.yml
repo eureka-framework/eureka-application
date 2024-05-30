@@ -62,10 +62,10 @@ jobs:
           sed -i 's+'$GITHUB_WORKSPACE'+/github/workspace+g' build/reports/phpunit/unit.xml
 
       - name: PHP 8.1 Compatibility
-        run: make php81compatibility
+        run: make php-min-compatibility
 
       - name: PHP 8.3 Compatibility
-        run: make php83compatibility
+        run: make php-max-compatibility
 
       - name: PHP Static Analyze
         run: make analyze
