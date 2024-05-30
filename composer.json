@@ -42,7 +42,6 @@
     "eureka/kernel-http": "^6.0.0",
     "eureka/kernel-console": "^6.0.0",
     "lcobucci/clock": "^3.0.0",
-    "psr/clock": "^1.0.0",
     "psr/container": "^2.0.2",
     "psr/log": "^3.0.0",
     "psr/http-message": "^2.0.0",
@@ -51,8 +50,7 @@
     "symfony/cache": "^6.4.7||^7.0.4",
     "symfony/routing": "^6.4.7||^7.0.5",
     "symfony/finder": "^6.4.7||^7.0.0",
-    "twig/twig": "^3.10.3",
-    "twig/markdown-extra": "^3.10.0"
+    "twig/twig": "^3.10.3"
   },
 
   "require-dev": {
